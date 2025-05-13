@@ -1,4 +1,7 @@
+@use '../base';
+
 .header {
-    height: $header-height;
+    @include base.flexCenter;
+    height: base.$header-height;
     background: orange;
 }
