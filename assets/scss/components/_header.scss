@@ -1,7 +1,0 @@
-@use '../base';
-
-.header {
-    @include base.flexCenter;
-    height: base.$header-height;
-    background: orange;
-}
