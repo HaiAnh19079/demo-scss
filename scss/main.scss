@@ -1,70 +1,44 @@
-// Numbers
-$font-size: 20px;
-$padding: 2rem;
-$order: 2;
-$z-index: 99;
+@use 'sass:math';
+/*
+Sử dụng toán tử và nội suy trong sass
+*/
+// 1. Equality (==.!=)
+// 2. Relation (>, <, >=, <=)
+// 3. Numeric (+, -, *, /, %)
+// @debug math.div(12px, 3); //div: division
 
-// Strings
-$device: mobile;
-$font-code: 'monospace';
-$my-name: 'Nguyen Van A';
+// @debug 11px % 2; //kiểm tra số chẵn
 
-// Colors
-$color1: green;
-$color2: #ff0000;
+// 4. Logic (not, and, or)
 
-$primary: blue;
-$secondary: rgba(
-    $color: $primary,
-    $alpha: 0.5,
-);
+// @debug not true; //false
 
-@debug $secondary;
+// Truthy & (Falsy: false, null)
 
-// Lists
-$colors: red green blue orange;
-$break-points: 575px 768px 991px;
-$font-weights: 400 500 600;
+// @debug not 0;
 
-// $list: 1 "2" 3 a "b" c "orange";
+// // các toán tử dùng để kiểm tra điều kiện
 
-// Maps (key:value)
-$break-points: (
-    'mobile': 575px,
-    'tablet': 768px,
-    'desktop': 991px,
-);
-$font-weights: (
-    'regular': 400,
-    'medium': 500,
-    'bold': 700,
-);
+// $success: false;
 
-// Boolean (true or false)
-// $success: true;
-// $error: false;
+// @if not $success {
+//     div {
+//         width: 100px;
+//     }
+// }
 
-@mixin avatar($w, $h, $circle: false) {
-    width: $w;
-    height: $h;
+// 5. Interpolation - nội suy
 
-    @if $circle == true {
-        border-radius: 50%;
-    }
-}
+// $name: 'Nguyen Van A';
 
-img.avatar {
-    @include avatar(100px, 100px, $circle: true);
-}
+// @debug 'Xin chao: #{$name}';
 
-// Null
-// $color: null;
-@mixin flexCenter($horizontal: center, $vertical: center) {
-    display: flex;
-    align-items: $vertical;
-    justify-content: $horizontal;
-}
+$selector: '.container';
+$property: 'display';
+$placement: 'left';
 
-.box {
-    @include flexCenter($horizontal: null);
+#{$selector} {
+    width: 100px;
+    margin-#{$placement}: 10px;
+    #{$property}: flex;
 }
