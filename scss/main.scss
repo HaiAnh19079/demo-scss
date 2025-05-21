@@ -1,44 +1,51 @@
-@use 'sass:math';
-/*
-Sử dụng toán tử và nội suy trong sass
-*/
-// 1. Equality (==.!=)
-// 2. Relation (>, <, >=, <=)
-// 3. Numeric (+, -, *, /, %)
-// @debug math.div(12px, 3); //div: division
+/* @if @else */
+// $condition: 10 > 10;
 
-// @debug 11px % 2; //kiểm tra số chẵn
+// // h1 {
+// //     @if $condition {
+// //         color: green;
+// //     } @else {
+// //         color: red;
+// //     }
+// // }
 
-// 4. Logic (not, and, or)
+// h1 {
+//     color: if($condition, green, red);
+// }
 
-// @debug not true; //false
+//-----
+/* @each */
+// $break-points: 575px 768px 991px 1140px 1320px;
 
-// Truthy & (Falsy: false, null)
-
-// @debug not 0;
-
-// // các toán tử dùng để kiểm tra điều kiện
-
-// $success: false;
-
-// @if not $success {
-//     div {
-//         width: 100px;
+// @each $break-point in $break-points {
+//     @media (min-width: #{$break-point}) {
+//         .test {
+//             color: red;
+//         }
 //     }
 // }
 
-// 5. Interpolation - nội suy
+// $break-points: (
+//     'sm': 575px,
+//     'md': 768px,
+//     'lg': 991px,
+//     'xl': 1140px,
+//     'xxl': 1320px,
+// );
 
-// $name: 'Nguyen Van A';
+// @each $infix, $break-point in $break-points {
+//     @media (min-width: #{$break-point}) {
+//         .col-#{$infix} {
+//             width: 100px;
+//         }
+//     }
+// }
 
-// @debug 'Xin chao: #{$name}';
+/* @for */
 
-$selector: '.container';
-$property: 'display';
-$placement: 'left';
-
-#{$selector} {
-    width: 100px;
-    margin-#{$placement}: 10px;
-    #{$property}: flex;
+@for $i from 1 through 12 {
+    // to or through
+    .col-#{$i} {
+        --column-number: #{$i};
+    }
 }
